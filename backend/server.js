@@ -8,6 +8,8 @@ const authRoutes = require("./routes/auth");
 const productRoutes = require("./routes/products");
 const cartRoutes = require("./routes/cart");
 const wishlistRoutes = require("./routes/wishlist");
+const orderRoutes = require("./routes/order");
+const adminOrderRoutes = require("./routes/adminOrder");
 
 const app = express();
 
@@ -32,6 +34,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/wishlist", wishlistRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/admin/orders", adminOrderRoutes);
+
 
 // Start server
 app.listen(PORT, () => {
