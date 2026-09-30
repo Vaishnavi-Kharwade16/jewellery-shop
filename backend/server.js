@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth");
+const productRoutes = require("./routes/products");
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 
 // Authentication routes
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
 
 // Start server
 app.listen(PORT, () => {
