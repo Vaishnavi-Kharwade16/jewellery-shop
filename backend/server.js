@@ -6,6 +6,8 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth");
 const productRoutes = require("./routes/products");
+const cartRoutes = require("./routes/cart");
+const wishlistRoutes = require("./routes/wishlist");
 
 const app = express();
 
@@ -28,6 +30,8 @@ app.get("/", (req, res) => {
 // Authentication routes
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/wishlist", wishlistRoutes);
 
 // Start server
 app.listen(PORT, () => {
