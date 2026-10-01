@@ -88,6 +88,30 @@ const getProducts = async (req, res) => {
   }
 };
 
+// GET /api/products/admin
+// Admin can see both active and inactive products
+const getAdminProducts = async (req, res) => {
+  try {
+    const products = await Product.find().sort({
+      createdAt: -1,
+    });
+
+    res.json({
+      count: products.length,
+      products,
+    });
+  } catch (error) {
+    console.error(
+      "Get admin products error:",
+      error
+    );
+
+    res.status(500).json({
+      message: "Failed to fetch admin products",
+    });
+  }
+};
+
 // GET /api/products/:id
 const getProductById = async (req, res) => {
   try {
@@ -230,6 +254,7 @@ const deleteProduct = async (req, res) => {
 
 module.exports = {
   getProducts,
+  getAdminProducts,
   getProductById,
   createProduct,
   updateProduct,

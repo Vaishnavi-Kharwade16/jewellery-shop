@@ -29,7 +29,9 @@ const orderItemSchema = new mongoose.Schema(
       default: "",
     },
   },
-  { _id: false }
+  {
+    _id: false,
+  }
 );
 
 const addressSchema = new mongoose.Schema(
@@ -41,7 +43,9 @@ const addressSchema = new mongoose.Schema(
     state: String,
     pincode: String,
   },
-  { _id: false }
+  {
+    _id: false,
+  }
 );
 
 const orderSchema = new mongoose.Schema(
@@ -100,8 +104,33 @@ const orderSchema = new mongoose.Schema(
 
     paymentStatus: {
       type: String,
-      enum: ["pending", "paid", "failed", "refunded"],
+      enum: [
+        "pending",
+        "paid",
+        "failed",
+        "refunded",
+      ],
       default: "pending",
+    },
+
+    paymentId: {
+      type: String,
+      default: null,
+    },
+
+    razorpayOrderId: {
+      type: String,
+      default: null,
+    },
+
+    stockReserved: {
+      type: Boolean,
+      default: false,
+    },
+
+    reservationExpiresAt: {
+      type: Date,
+      default: null,
     },
 
     orderStatus: {
@@ -135,11 +164,6 @@ const orderSchema = new mongoose.Schema(
         },
       },
     ],
-
-    paymentId: {
-      type: String,
-      default: null,
-    },
 
     invoiceUrl: {
       type: String,

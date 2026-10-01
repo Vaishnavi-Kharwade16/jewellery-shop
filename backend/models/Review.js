@@ -25,11 +25,13 @@ const reviewSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      minlength: 3,
+      maxlength: 500,
     },
 
-    photos: {
-      type: [String],
-      default: [],
+    photo: {
+      type: String,
+      default: "",
     },
   },
   {
@@ -37,4 +39,12 @@ const reviewSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Review", reviewSchema);
+reviewSchema.index(
+  { product: 1, user: 1 },
+  { unique: true }
+);
+
+module.exports = mongoose.model(
+  "Review",
+  reviewSchema
+);

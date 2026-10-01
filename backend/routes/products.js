@@ -3,6 +3,7 @@ const express = require("express");
 const {
   getProducts,
   getProductById,
+  getAdminProducts,
   createProduct,
   updateProduct,
   deleteProduct,
@@ -18,12 +19,27 @@ const router = express.Router();
 // Public product catalog
 router.get("/", getProducts);
 
+// Admin product management
+// IMPORTANT: This must come before /:id
+router.get(
+  "/admin",
+  authenticate,
+  requireAdmin,
+  getAdminProducts
+);
+
 // Public product details
 router.get("/:id", getProductById);
 
-// Admin product management
-router.post("/", authenticate, requireAdmin, createProduct);
+// Admin create product
+router.post(
+  "/",
+  authenticate,
+  requireAdmin,
+  createProduct
+);
 
+// Admin update product
 router.put(
   "/:id",
   authenticate,
@@ -31,6 +47,7 @@ router.put(
   updateProduct
 );
 
+// Admin delete/deactivate product
 router.delete(
   "/:id",
   authenticate,
