@@ -7,8 +7,10 @@ import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 
 import { useWishlist } from "../context/WishlistContext";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
   const { token, user, logout } = useAuth();
 
   const { cart } = useCart();
@@ -43,10 +45,10 @@ function Navbar() {
     setMenuOpen(false);
   };
 
-  const handleLogout = () => {
-    logout();
-    closeMenu();
-  };
+ const handleLogout = () => {
+  logout();
+  navigate("/");
+};
 
   // Check whether the logged-in user is an admin
   const isAdmin =
@@ -174,7 +176,7 @@ function Navbar() {
 
                 <button
                   type="button"
-                  onClick={logout}
+                  onClick={handleLogout}
                   className="rounded-full border border-stone-900 px-5 py-2 text-sm font-medium text-stone-900 transition-all duration-200 hover:bg-stone-900 hover:text-white"
                 >
                   Logout
