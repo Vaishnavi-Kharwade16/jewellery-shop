@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   getAdminOrderStats,
@@ -15,6 +16,7 @@ const formatCurrency = (amount) => {
 };
 
 const AdminDashboard = () => {
+    const navigate = useNavigate();
   const [stats, setStats] = useState(null);
   const [products, setProducts] = useState([]);
 
@@ -138,12 +140,21 @@ const AdminDashboard = () => {
             </p>
           </div>
 
-          <button
-            onClick={loadDashboard}
-            className="rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-medium text-stone-800 transition hover:border-stone-500"
-          >
-            Refresh
-          </button>
+       <div className="flex gap-3">
+  <button
+    onClick={() => navigate("/admin/products")}
+    className="rounded-full bg-stone-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-stone-700"
+  >
+    Manage Products
+  </button>
+
+  <button
+    onClick={loadDashboard}
+    className="rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-medium text-stone-800 transition hover:border-stone-500"
+  >
+    Refresh
+  </button>
+</div>
         </div>
 
         {/* Main Stats */}

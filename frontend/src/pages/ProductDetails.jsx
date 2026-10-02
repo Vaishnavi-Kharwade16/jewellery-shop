@@ -5,7 +5,7 @@ import axios from "axios";
 import { useCart } from "../context/CartContext";
 import ReviewSection from "../components/ReviewSection";
 
-const API_URL = "http://localhost:5000";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function ProductDetails() {
   const { id } = useParams();
